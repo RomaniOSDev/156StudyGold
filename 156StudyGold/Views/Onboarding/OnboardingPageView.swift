@@ -9,49 +9,104 @@ struct OnboardingPageView: View {
     let page: OnboardingPage
     let isActive: Bool
 
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
     @State private var iconAppear = false
     @State private var floatPrimary = false
     @State private var floatSecondary = false
 
     var body: some View {
-        VStack(spacing: 28) {
-            illustration
+        GeometryReader { proxy in
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(spacing: contentSpacing(for: proxy.size.height)) {
+                    illustration(size: illustrationSize(for: proxy.size.height))
 
-            VStack(spacing: 14) {
-                Text(page.title)
-                    .font(.system(size: 30, weight: .heavy, design: .rounded))
-                    .foregroundColor(.white)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 24)
+                    textSection(titleSize: titleSize(for: proxy.size.height))
 
-                Text(page.subtitle)
-                    .font(.subheadline)
-                    .foregroundColor(.white.opacity(0.75))
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 32)
-                    .lineLimit(4)
-            }
-
-            VStack(spacing: 10) {
-                ForEach(page.highlights) { highlight in
-                    highlightRow(highlight)
+                    highlightsSection
                 }
+                .padding(.horizontal, horizontalPadding)
+                .padding(.top, 16)
+                .padding(.bottom, 12)
+                .frame(maxWidth: .infinity)
+                .frame(minHeight: proxy.size.height, alignment: .top)
             }
-            .padding(.horizontal, 28)
-            .padding(.top, 4)
-
-            Spacer(minLength: 0)
         }
-        .padding(.top, 24)
         .onAppear { animate() }
         .onChange(of: isActive) { active in
             if active { animate() }
         }
     }
 
-    private var illustration: some View {
-        ZStack {
-            // Outer glow ring
+    private var horizontalPadding: CGFloat {
+        horizontalSizeClass == .regular ? 32 : 20
+    }
+
+    private var highlightsSection: some View {
+        Group {
+            if horizontalSizeClass == .regular {
+                LazyVGrid(
+                    columns: [
+                        GridItem(.flexible(), spacing: 12),
+                        GridItem(.flexible(), spacing: 12)
+                    ],
+                    spacing: 12
+                ) {
+                    ForEach(page.highlights) { highlight in
+                        highlightRow(highlight)
+                    }
+                }
+            } else {
+                VStack(spacing: 10) {
+                    ForEach(page.highlights) { highlight in
+                        highlightRow(highlight)
+                    }
+                }
+            }
+        }
+        .padding(.top, 4)
+    }
+
+    private func contentSpacing(for height: CGFloat) -> CGFloat {
+        height < 620 ? 16 : (horizontalSizeClass == .regular ? 28 : 20)
+    }
+
+    private func illustrationSize(for height: CGFloat) -> CGFloat {
+        if height < 620 { return 140 }
+        if verticalSizeClass == .compact { return 150 }
+        if horizontalSizeClass == .regular { return 200 }
+        return 170
+    }
+
+    private func titleSize(for height: CGFloat) -> CGFloat {
+        if height < 620 { return 24 }
+        if horizontalSizeClass == .regular { return 34 }
+        return 28
+    }
+
+    private func textSection(titleSize: CGFloat) -> some View {
+        VStack(spacing: 12) {
+            Text(page.title)
+                .font(.system(size: titleSize, weight: .heavy, design: .rounded))
+                .foregroundColor(.white)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
+
+            Text(page.subtitle)
+                .font(.body)
+                .foregroundColor(.white.opacity(0.75))
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+    }
+
+    private func illustration(size: CGFloat) -> some View {
+        let iconScale = size / 220.0
+        let mainIconSize = 96 * iconScale
+        let secondarySize = 34 * iconScale
+        let tertiarySize = 28 * iconScale
+
+        return ZStack {
             Circle()
                 .fill(
                     LinearGradient(
@@ -60,14 +115,12 @@ struct OnboardingPageView: View {
                         endPoint: .bottomTrailing
                     )
                 )
-                .frame(width: 220, height: 220)
-                .shadow(color: page.glowColor.opacity(0.55), radius: 40, x: 0, y: 20)
+                .frame(width: size, height: size)
                 .overlay(
                     Circle()
                         .stroke(Color.white.opacity(0.35), lineWidth: 1)
                 )
 
-            // Inner highlight
             Circle()
                 .fill(
                     LinearGradient(
@@ -76,88 +129,55 @@ struct OnboardingPageView: View {
                         endPoint: .center
                     )
                 )
-                .frame(width: 220, height: 220)
+                .frame(width: size, height: size)
 
-            // Decorative outer dots
-            ForEach(0..<8, id: \.self) { idx in
-                Circle()
-                    .fill(page.glowColor.opacity(0.35))
-                    .frame(width: 6, height: 6)
-                    .offset(y: -130)
-                    .rotationEffect(.degrees(Double(idx) * 45))
-            }
-
-            // Secondary icon (top-right floating)
             Image(systemName: page.secondaryIcon)
-                .font(.system(size: 34, weight: .bold))
+                .font(.system(size: secondarySize, weight: .bold))
                 .foregroundColor(.white)
                 .symbolRenderingMode(.hierarchical)
-                .padding(14)
+                .padding(14 * iconScale)
                 .background(
                     Circle()
-                        .fill(
-                            LinearGradient(
-                                colors: [Color.white.opacity(0.35), Color.white.opacity(0.1)],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
-                        )
+                        .fill(Color.white.opacity(0.22))
                 )
                 .overlay(
                     Circle()
                         .stroke(Color.white.opacity(0.4), lineWidth: 1)
                 )
-                .shadow(color: Color.black.opacity(0.3), radius: 8, x: 0, y: 4)
-                .offset(x: 95, y: floatPrimary ? -82 : -76)
+                .offset(x: size * 0.43, y: floatPrimary ? -size * 0.37 : -size * 0.34)
                 .animation(.easeInOut(duration: 1.6).repeatForever(autoreverses: true), value: floatPrimary)
 
-            // Tertiary icon (bottom-left)
             Image(systemName: page.tertiaryIcon)
-                .font(.system(size: 28, weight: .bold))
+                .font(.system(size: tertiarySize, weight: .bold))
                 .foregroundColor(.white)
                 .symbolRenderingMode(.hierarchical)
-                .padding(11)
+                .padding(11 * iconScale)
                 .background(
                     Circle()
-                        .fill(
-                            LinearGradient(
-                                colors: [Color.white.opacity(0.35), Color.white.opacity(0.1)],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
-                        )
+                        .fill(Color.white.opacity(0.22))
                 )
                 .overlay(
                     Circle()
                         .stroke(Color.white.opacity(0.4), lineWidth: 1)
                 )
-                .shadow(color: Color.black.opacity(0.3), radius: 6, x: 0, y: 3)
-                .offset(x: -90, y: floatSecondary ? 80 : 86)
+                .offset(x: -size * 0.41, y: floatSecondary ? size * 0.36 : size * 0.39)
                 .animation(.easeInOut(duration: 1.8).repeatForever(autoreverses: true), value: floatSecondary)
 
-            // Big main icon
             Image(systemName: page.icon)
-                .font(.system(size: 96, weight: .bold))
+                .font(.system(size: mainIconSize, weight: .bold))
                 .foregroundColor(.white)
                 .symbolRenderingMode(.hierarchical)
-                .shadow(color: Color.black.opacity(0.25), radius: 8, x: 0, y: 4)
                 .scaleEffect(iconAppear ? 1.0 : 0.7)
                 .opacity(iconAppear ? 1.0 : 0)
         }
-        .frame(height: 240)
+        .frame(height: size + 20)
     }
 
     private func highlightRow(_ highlight: OnboardingPage.Highlight) -> some View {
-        HStack(spacing: 12) {
+        HStack(alignment: .top, spacing: 12) {
             ZStack {
                 Circle()
-                    .fill(
-                        LinearGradient(
-                            colors: [page.glowColor.opacity(0.4), page.glowColor.opacity(0.12)],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
+                    .fill(page.glowColor.opacity(0.25))
                     .frame(width: 38, height: 38)
                 Image(systemName: highlight.icon)
                     .font(.subheadline.bold())
@@ -165,19 +185,23 @@ struct OnboardingPageView: View {
                     .symbolRenderingMode(.hierarchical)
             }
 
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: 4) {
                 Text(highlight.title)
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundColor(.white)
+                    .fixedSize(horizontal: false, vertical: true)
+
                 Text(highlight.subtitle)
                     .font(.caption)
                     .foregroundColor(.white.opacity(0.65))
+                    .fixedSize(horizontal: false, vertical: true)
             }
 
             Spacer(minLength: 0)
         }
         .padding(12)
+        .frame(maxWidth: .infinity, alignment: .leading)
         .background(
             RoundedRectangle(cornerRadius: 14, style: .continuous)
                 .fill(Color.white.opacity(0.06))

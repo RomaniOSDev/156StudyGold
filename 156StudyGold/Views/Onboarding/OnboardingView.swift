@@ -8,6 +8,7 @@ import SwiftUI
 struct OnboardingView: View {
     var onFinish: () -> Void
 
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @State private var currentIndex: Int = 0
     private let pages = OnboardingPage.pages
 
@@ -31,13 +32,14 @@ struct OnboardingView: View {
                 .animation(.easeInOut(duration: 0.4), value: currentIndex)
 
                 pageIndicator
-                    .padding(.top, 4)
+                    .padding(.top, 8)
 
                 actionButtons
-                    .padding(.horizontal, 24)
-                    .padding(.top, 18)
-                    .padding(.bottom, 28)
+                    .padding(.horizontal, horizontalSizeClass == .regular ? 40 : 24)
+                    .padding(.top, 16)
+                    .padding(.bottom, horizontalSizeClass == .regular ? 40 : 24)
             }
+            .adaptiveContentWidth(560)
         }
         .preferredColorScheme(.dark)
     }
@@ -47,7 +49,6 @@ struct OnboardingView: View {
             LinearGradient.studyBackgroundGradient
                 .ignoresSafeArea()
 
-            // Top glow that adapts to current page
             RadialGradient(
                 colors: [currentGlow.opacity(0.45), .clear],
                 center: UnitPoint(x: 0.25, y: 0.05),
@@ -57,7 +58,6 @@ struct OnboardingView: View {
             .ignoresSafeArea()
             .animation(.easeInOut(duration: 0.6), value: currentIndex)
 
-            // Bottom accent glow
             RadialGradient(
                 colors: [Color.studyAccentBlue.opacity(0.30), .clear],
                 center: UnitPoint(x: 0.8, y: 0.95),
@@ -108,10 +108,6 @@ struct OnboardingView: View {
                         : AnyShapeStyle(Color.white.opacity(0.25))
                     )
                     .frame(width: idx == currentIndex ? 28 : 8, height: 8)
-                    .shadow(
-                        color: idx == currentIndex ? Color.studyGold.opacity(0.55) : .clear,
-                        radius: 6, x: 0, y: 2
-                    )
                     .animation(.spring(response: 0.4, dampingFraction: 0.7), value: currentIndex)
             }
         }

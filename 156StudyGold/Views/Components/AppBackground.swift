@@ -43,4 +43,20 @@ extension View {
     func appBackground() -> some View {
         background(AppBackground())
     }
+
+    /// Centers content and limits width on iPad / regular width layouts.
+    func adaptiveContentWidth(_ maxWidth: CGFloat = 640) -> some View {
+        modifier(AdaptiveContentWidthModifier(maxWidth: maxWidth))
+    }
+}
+
+private struct AdaptiveContentWidthModifier: ViewModifier {
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    let maxWidth: CGFloat
+
+    func body(content: Content) -> some View {
+        content
+            .frame(maxWidth: horizontalSizeClass == .regular ? maxWidth : .infinity)
+            .frame(maxWidth: .infinity)
+    }
 }
