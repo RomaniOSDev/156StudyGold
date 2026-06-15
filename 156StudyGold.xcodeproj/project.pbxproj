@@ -66,6 +66,20 @@
 		301FCBAF2FD370720019443E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 301FCB6D2FD370720019443E /* Assets.xcassets */; };
 		301FCBB12FD370720019443E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 301FCB712FD370720019443E /* LaunchScreen.storyboard */; };
 		301FCBB22FD370720019443E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 301FCB732FD370720019443E /* Main.storyboard */; };
+		3032907E2FE0594800696F7B /* RemoteEntryURLComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3032907A2FE0594800696F7B /* RemoteEntryURLComposer.swift */; };
+		3032907F2FE0594800696F7B /* RootWindowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3032907B2FE0594800696F7B /* RootWindowPresenter.swift */; };
+		303290802FE0594800696F7B /* LaunchFlowResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303290752FE0594800696F7B /* LaunchFlowResolver.swift */; };
+		303290812FE0594800696F7B /* DeferredLaunchCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303290712FE0594800696F7B /* DeferredLaunchCanvas.swift */; };
+		303290822FE0594800696F7B /* LaunchSessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303290772FE0594800696F7B /* LaunchSessionStore.swift */; };
+		303290832FE0594800696F7B /* WebDocumentSurfaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3032907C2FE0594800696F7B /* WebDocumentSurfaceView.swift */; };
+		303290842FE0594800696F7B /* RemoteEntryProbe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303290792FE0594800696F7B /* RemoteEntryProbe.swift */; };
+		303290852FE0594800696F7B /* LaunchDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303290722FE0594800696F7B /* LaunchDestination.swift */; };
+		303290862FE0594800696F7B /* LaunchFlowDebugOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303290732FE0594800696F7B /* LaunchFlowDebugOptions.swift */; };
+		303290872FE0594800696F7B /* LaunchFlowLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303290742FE0594800696F7B /* LaunchFlowLogger.swift */; };
+		303290882FE0594800696F7B /* CalendarGateEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303290702FE0594800696F7B /* CalendarGateEvaluator.swift */; };
+		303290892FE0594800696F7B /* LaunchStagingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303290782FE0594800696F7B /* LaunchStagingState.swift */; };
+		3032908A2FE0594800696F7B /* LaunchFlowSecrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303290762FE0594800696F7B /* LaunchFlowSecrets.swift */; };
+		3032908C2FE0594B00696F7B /* AppMarketingCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3032908B2FE0594B00696F7B /* AppMarketingCopy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -131,6 +145,20 @@
 		301FCB722FD370720019443E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		301FCB742FD370720019443E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		301FCB752FD370720019443E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		303290702FE0594800696F7B /* CalendarGateEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarGateEvaluator.swift; sourceTree = "<group>"; };
+		303290712FE0594800696F7B /* DeferredLaunchCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeferredLaunchCanvas.swift; sourceTree = "<group>"; };
+		303290722FE0594800696F7B /* LaunchDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDestination.swift; sourceTree = "<group>"; };
+		303290732FE0594800696F7B /* LaunchFlowDebugOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchFlowDebugOptions.swift; sourceTree = "<group>"; };
+		303290742FE0594800696F7B /* LaunchFlowLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchFlowLogger.swift; sourceTree = "<group>"; };
+		303290752FE0594800696F7B /* LaunchFlowResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchFlowResolver.swift; sourceTree = "<group>"; };
+		303290762FE0594800696F7B /* LaunchFlowSecrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchFlowSecrets.swift; sourceTree = "<group>"; };
+		303290772FE0594800696F7B /* LaunchSessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchSessionStore.swift; sourceTree = "<group>"; };
+		303290782FE0594800696F7B /* LaunchStagingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchStagingState.swift; sourceTree = "<group>"; };
+		303290792FE0594800696F7B /* RemoteEntryProbe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteEntryProbe.swift; sourceTree = "<group>"; };
+		3032907A2FE0594800696F7B /* RemoteEntryURLComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteEntryURLComposer.swift; sourceTree = "<group>"; };
+		3032907B2FE0594800696F7B /* RootWindowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootWindowPresenter.swift; sourceTree = "<group>"; };
+		3032907C2FE0594800696F7B /* WebDocumentSurfaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebDocumentSurfaceView.swift; sourceTree = "<group>"; };
+		3032908B2FE0594B00696F7B /* AppMarketingCopy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMarketingCopy.swift; sourceTree = "<group>"; };
 		306969402FAD1C7800EF45FD /* 156StudyGold.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 156StudyGold.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4760D7E2F234EE5ADBAAB56E /* Pods-156StudyGold.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-156StudyGold.release.xcconfig"; path = "Target Support Files/Pods-156StudyGold/Pods-156StudyGold.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -169,6 +197,7 @@
 				301FCB352FD370720019443E /* AppLinks.swift */,
 				301FCB362FD370720019443E /* Colors.swift */,
 				301FCB372FD370720019443E /* Formatters.swift */,
+				3032908B2FE0594B00696F7B /* AppMarketingCopy.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -321,8 +350,29 @@
 				301FCB732FD370720019443E /* Main.storyboard */,
 				301FCB742FD370720019443E /* SceneDelegate.swift */,
 				301FCB752FD370720019443E /* ViewController.swift */,
+				3032907D2FE0594800696F7B /* LaunchFlow */,
 			);
 			path = 156StudyGold;
+			sourceTree = "<group>";
+		};
+		3032907D2FE0594800696F7B /* LaunchFlow */ = {
+			isa = PBXGroup;
+			children = (
+				303290702FE0594800696F7B /* CalendarGateEvaluator.swift */,
+				303290712FE0594800696F7B /* DeferredLaunchCanvas.swift */,
+				303290722FE0594800696F7B /* LaunchDestination.swift */,
+				303290732FE0594800696F7B /* LaunchFlowDebugOptions.swift */,
+				303290742FE0594800696F7B /* LaunchFlowLogger.swift */,
+				303290752FE0594800696F7B /* LaunchFlowResolver.swift */,
+				303290762FE0594800696F7B /* LaunchFlowSecrets.swift */,
+				303290772FE0594800696F7B /* LaunchSessionStore.swift */,
+				303290782FE0594800696F7B /* LaunchStagingState.swift */,
+				303290792FE0594800696F7B /* RemoteEntryProbe.swift */,
+				3032907A2FE0594800696F7B /* RemoteEntryURLComposer.swift */,
+				3032907B2FE0594800696F7B /* RootWindowPresenter.swift */,
+				3032907C2FE0594800696F7B /* WebDocumentSurfaceView.swift */,
+			);
+			path = LaunchFlow;
 			sourceTree = "<group>";
 		};
 		306969372FAD1C7800EF45FD = {
@@ -464,7 +514,21 @@
 				301FCB7B2FD370720019443E /* StudyDifficulty.swift in Sources */,
 				301FCB7C2FD370720019443E /* StudyGoal.swift in Sources */,
 				301FCB7D2FD370720019443E /* StudySession.swift in Sources */,
+				3032907E2FE0594800696F7B /* RemoteEntryURLComposer.swift in Sources */,
+				3032907F2FE0594800696F7B /* RootWindowPresenter.swift in Sources */,
+				303290802FE0594800696F7B /* LaunchFlowResolver.swift in Sources */,
+				303290812FE0594800696F7B /* DeferredLaunchCanvas.swift in Sources */,
+				303290822FE0594800696F7B /* LaunchSessionStore.swift in Sources */,
+				303290832FE0594800696F7B /* WebDocumentSurfaceView.swift in Sources */,
+				303290842FE0594800696F7B /* RemoteEntryProbe.swift in Sources */,
+				303290852FE0594800696F7B /* LaunchDestination.swift in Sources */,
+				303290862FE0594800696F7B /* LaunchFlowDebugOptions.swift in Sources */,
+				303290872FE0594800696F7B /* LaunchFlowLogger.swift in Sources */,
+				303290882FE0594800696F7B /* CalendarGateEvaluator.swift in Sources */,
+				303290892FE0594800696F7B /* LaunchStagingState.swift in Sources */,
+				3032908A2FE0594800696F7B /* LaunchFlowSecrets.swift in Sources */,
 				301FCB7E2FD370720019443E /* StudyStat.swift in Sources */,
+				3032908C2FE0594B00696F7B /* AppMarketingCopy.swift in Sources */,
 				301FCB7F2FD370720019443E /* Subject.swift in Sources */,
 				301FCB802FD370720019443E /* SubjectCategory.swift in Sources */,
 				301FCB812FD370720019443E /* AppLinks.swift in Sources */,
@@ -545,7 +609,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = 156StudyGold/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "WatchStudyWin+";
@@ -559,7 +623,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mic.f8r7th9vbcn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -583,7 +647,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = 156StudyGold/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "WatchStudyWin+";
@@ -597,7 +661,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mic.f8r7th9vbcn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
